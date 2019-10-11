@@ -1,0 +1,75 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500i,600,700&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@media (max-width: 600px) {
+    .postRow{
+        border:none !important;
+        margin:0 !important;
+    }
+    .postContainer{
+        padding:0 !important;
+    }
+}
+a {
+    color: #003569;
+    font-weight: 600;
+    text-decoration: none !important;
+}
+.postRowHeader {
+    padding: 10px !important;
+}
+.postRow {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 3px;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow-x: hidden;
+}
+
+.postRow .col-12{
+    padding:0;
+}
+.btn{
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-weight: 600;
+    padding: 0 9px;
+    text-align: center;
+    text-transform: inherit;
+    text-overflow: ellipsis;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    margin: 4px 0;
+}
+.navbar-brand{
+.navfirstimg {
+    width: 20px;
+    padding: 0 15px;
+    border-right: 1px solid;
+    box-sizing: content-box;
+}
+ span {
+    margin: 0 10px;
+}
+}
+
+.mainprofileImg{
+    border:1px solid #d7d7d7;
+    width:150px;
+}
+
+.container {
+    max-width: 760px !important;
+}
