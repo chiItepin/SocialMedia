@@ -14,6 +14,12 @@
 
 Auth::routes();
 
+// add a comment to post
+Route::post('/comment/{post}', 'CommentsController@store');
+
+// retrieve COMMENTS of posts
+Route::get('/commented/{post}/{offset}', 'CommentsController@show');
+
 // retrieve profile
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 
@@ -25,6 +31,9 @@ Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.upda
 
 // FFOllow user
  Route::post('/follow/{user}', 'FollowsController@store');
+
+ // LIKE POST
+ Route::post('/like/{post}', 'LikesController@store');
 
 // POST ACTION para enviar formulario
 Route::post('/p', 'PostsController@store');

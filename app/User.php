@@ -63,8 +63,15 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    // relation with profiles if following
     public function following()
     {
         return $this->belongsToMany(Profile::class);
+    }
+
+    // relation with post likes if any
+    public function liked()
+    {
+        return $this->belongsToMany(Post::class);
     }
 }

@@ -5,7 +5,7 @@
 
     <div style="max-width:900px" class="row postRow">
         <div class="col-12 col-md-8">
-                <img src="{{url('storage/'.$post->image)}}" class="w-100" alt="">
+                <img src="{{url('storage/'.$post->image)}}" class="mainImg w-100" alt="">
         </div>
             <div class="col-md-4 col-12 postRowHeader">
                 <div class="d-flex align-items-center">
@@ -27,8 +27,30 @@
                 </div>
 
                 <hr>
-
             <p><span class="font-weight-bold"><a style="color:black" href="/profile/{{ $post->user->profile->id }}">{{$post->user->username}}</a></span> {{$post->caption}}</p>
+
+            <div class="commentsContainer">
+                <comments postid="{{$post->id}}"></comments>
+
+            </div>
+            <div class="footerpost">
+
+            <like-link logged="{{Auth::check()}}" likes="{{ $likes }}" postid="{{ $post->id }}"></like-link>
+            <div class="d-inline-block">{{ $likesCount }} <span class="font-weight-bold pl-1">Likes</span></div>
+            <div class="pl-1 d-inline-block">{{ $commentsCount }} <span class="font-weight-bold pl-1">Comments</span></div>
+
+        </div>
+
+        <div class="footerpostComment">
+
+            <form action="/comment/{{$post->id}}" method="post">
+                    @csrf
+
+                <input type="text" placeholder="Add a comment" name="comment" id="">
+            </form>
+
+        </div>
+
         </div>
     </div>
 

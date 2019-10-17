@@ -23,6 +23,12 @@ Vue.component('follow-button', require('./components/FollowButton.vue').default)
 
 Vue.component('follow-link', require('./components/FollowLink.vue').default);
 
+Vue.component('search-main', require('./components/Search.vue').default);
+
+Vue.component('like-link', require('./components/LikeLink.vue').default);
+
+Vue.component('comments', require('./components/Comments.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

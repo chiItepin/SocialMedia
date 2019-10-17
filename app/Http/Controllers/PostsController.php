@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Cache as IlluminateCache;
 use App\Post;
 
 class PostsController extends Controller
 {
 
-    // SOLO USUARIOS LOGUEADOS
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // // SOLO USUARIOS LOGUEADOS
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(10);
+        // add our user id to collection object array
+        $users = $users->push(auth()->user()->id);
+
+        // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(10);
+
+        $posts = Post::whereIn('user_id', $users)->latest()->paginate(10);
 
         return view('posts.index', compact('posts'));
 
@@ -58,10 +64,28 @@ class PostsController extends Controller
         //     'post' => $post,
         // ]);
 
+        // pass in comments
+        $comments = $post->comments;
+
+        $commentsCount = IlluminateCache::remember('count.comments' . $post->id, now()->addSeconds(30), function () use ($post) {
+            return $post->comments->count();
+        });
+
+        // pass in data if user has liked the post
+        $likes = (auth()->user()) ?  auth()->user()->liked->contains($post->id) : false;
+
         $follows = (auth()->user()) ?  auth()->user()->following->contains($post->user->profile->id) : false;
 
-        return view('posts.show', compact('post','follows'));
+        // how many likes does the post have and cache it
+        $likesCount = IlluminateCache::remember('count.likes' . $post->id, now()->addSeconds(30), function () use ($post) {
+            return $post->likes->count();
+        });
+
+
+        return view('posts.show', compact('post','follows','likes','likesCount','comments','commentsCount'));
 
 
     }
+
+
 }
