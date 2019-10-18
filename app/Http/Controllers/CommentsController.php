@@ -18,7 +18,7 @@ class CommentsController extends Controller
     public function show(\App\Post $post, $offset)
     {
         // ELOQUENT JOIN
-         $comments = Comment::where('post_id', $post->id)->with('profile')->with('user')->skip($offset)->take(10)->latest()->get();
+        $comments = Comment::where('post_id', $post->id)->with('profile')->with('user')->skip($offset)->take(10)->latest()->get();
 
         // // SQL JOIN
         // $comments = DB::table('comments')
@@ -53,7 +53,9 @@ class CommentsController extends Controller
             'post_id' => $post->id,
         ]);
 
-        return redirect('/p/' . $post->id );
+        $comments = Comment::where('post_id', $post->id)->with('profile')->with('user')->take(1)->latest()->get();
+
+        return response()->json($comments);
 
     }
 }

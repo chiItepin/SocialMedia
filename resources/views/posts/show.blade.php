@@ -29,10 +29,8 @@
                 <hr>
             <p><span class="font-weight-bold"><a style="color:black" href="/profile/{{ $post->user->profile->id }}">{{$post->user->username}}</a></span> {{$post->caption}}</p>
 
-            <div class="commentsContainer">
                 <comments postid="{{$post->id}}"></comments>
 
-            </div>
             <div class="footerpost">
 
             <like-link logged="{{Auth::check()}}" likes="{{ $likes }}" postid="{{ $post->id }}"></like-link>
@@ -41,15 +39,8 @@
 
         </div>
 
-        <div class="footerpostComment">
+                  
 
-            <form action="/comment/{{$post->id}}" method="post">
-                    @csrf
-
-                <input type="text" placeholder="Add a comment" name="comment" id="">
-            </form>
-
-        </div>
 
         </div>
     </div>

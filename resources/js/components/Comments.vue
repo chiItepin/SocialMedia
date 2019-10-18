@@ -1,6 +1,6 @@
 <template>
     <div>
-
+            <div class="commentsContainer">
 
          <div v-bind:key="key" v-for="(comment, key) in comments" class="rowComment align-items-center">
                     <a style="color:black" :href="'/profile/'+comment.profile.id">
@@ -15,6 +15,18 @@
             <a href="#/" @click="loadMore(comments.length)" class="d-block mt-2 text-center text-primary">View more</a>
             </div>
 
+             </div>
+<div class="footerpostComment">
+
+  <form v-on:submit.prevent="submitForm" >
+
+<!-- <input type="hidden" name="_token" v-model="csrf"> -->
+
+                <input v-model="comment" type="text" placeholder="Add a comment" name="comment" id="">
+            </form>
+
+    </div>
+</div>
     </div>
 </template>
 
@@ -29,7 +41,8 @@
             return {
                 post: this.postid,
                 comments: [],
-                commentsCount: ''
+                commentsCount: '',
+                comment:'',
             }
         },
         methods:{
@@ -49,12 +62,24 @@
                 for(var i in res.data){
                     this.comments.push(res.data[i])
                   }
-                this.commentsCount = this.comments.length;
+                this.commentsCount = res.data.length;
             })
             .catch(err => {
                 console.error(err);
             })
-            }
+            },
+             submitForm(){
+            axios.post('/comment/'+this.post, {
+        comment: this.comment,
+      }).then(res => {
+          // unshift to push at the beginning of the array
+            this.comments.unshift(res.data[0]);
+            this.comment = '';
+            })
+            .catch(err => {
+                console.error(err);
+            })
+            },
         },
         computed:{
 
