@@ -44,5 +44,12 @@ Route::get('/p/create', 'PostsController@create');
 // view post
 Route::get('/p/{post}', 'PostsController@show');
 
+
+// view EVERY post
+Route::get('/post/view/{offset}', 'PostsController@showindex');
+
+// view EVERY post of a profile
+Route::get('/post/profile/{user}/{offset}', 'PostsController@profileindex');
+
 // index home of posts
 Route::get('/', 'PostsController@index');

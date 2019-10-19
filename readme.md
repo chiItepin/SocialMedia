@@ -1,5 +1,7 @@
 <p>
-<img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/b6a6b9b2-fa1e-4292-8dd1-7b40da768145/00000660.png">
+<img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/49b408b2-3b1f-4cc8-a33e-e8e4c38b0aab/00000693.png">
+<hr>
+<img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/7daba9e5-bac3-42e9-a621-b9ba4bf95970/00000692.png">
 </p>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>

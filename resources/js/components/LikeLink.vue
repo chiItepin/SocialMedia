@@ -1,5 +1,6 @@
 <template>
     <div>
+    
     <div v-if="loggedin != 1">
        <!-- Button trigger modal -->
 <a data-toggle="modal" data-target="#notLogged">

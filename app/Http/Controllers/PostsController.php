@@ -11,10 +11,10 @@ class PostsController extends Controller
 {
 
     // // SOLO USUARIOS LOGUEADOS
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -34,6 +34,32 @@ class PostsController extends Controller
     public function create()
     {
         return view('posts.create');
+    }
+
+    // retrieve user posts
+    public function profileindex($profile, $offset)
+    {
+
+        $posts = Post::where('user_id', $profile)->with('user')->with('profile')->with('likesuser')->with('likes')->with('commentscount')->skip($offset)->take(10)->latest()->get();
+
+        return response()->json($posts);
+
+    }
+
+    // home page
+    public function showindex($offset)
+    {
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+
+        // add our user id to collection object array
+        $users = $users->push(auth()->user()->id);
+
+        // $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(10);
+
+        $posts = Post::whereIn('user_id', $users)->with('user')->with('profile')->with('likesuser')->with('likes')->with('commentscount')->skip($offset)->take(10)->latest()->get();
+
+        return response()->json($posts);
+
     }
 
     public function store()

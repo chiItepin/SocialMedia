@@ -40,11 +40,9 @@
         </div>
     </div>
 
-    <div class="row">
-        @foreach ($user->posts as $post)
-    <div class="col-s12 col-md-4 mt-4"><a href="{{url('')}}/p/{{ $post->id }}"><img src="{{url('storage/'.$post->image)}}" class="w-100" alt=""></a></div>
-        @endforeach
-    </div>
+    <index-profile :profile="{{ $user->profile->user_id }}" ></index-profile>
+
+
 
 
 </div>

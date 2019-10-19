@@ -21,11 +21,6 @@
 
 
 </IfModule>
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 10 days"
-    ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-</IfModule>
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif)$">
+    Header set Cache-Control "max-age=864000, public, must-revalidate"
+</FilesMatch>

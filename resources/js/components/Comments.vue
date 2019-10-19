@@ -1,6 +1,6 @@
 <template>
     <div>
-            <div class="commentsContainer">
+            <div id="commentsContainer" class="commentsContainer">
 
          <div v-bind:key="key" v-for="(comment, key) in comments" class="rowComment align-items-center">
                     <a style="color:black" :href="'/profile/'+comment.profile.id">
@@ -34,9 +34,6 @@
     export default {
         props: ['postid'],
 
-        mounted() {
-
-        },
         data: function() {
             return {
                 post: this.postid,
@@ -75,6 +72,8 @@
           // unshift to push at the beginning of the array
             this.comments.unshift(res.data[0]);
             this.comment = '';
+             var commentsContainer = document.getElementById("commentsContainer");
+            commentsContainer.scrollTop = 0;
             })
             .catch(err => {
                 console.error(err);

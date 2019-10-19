@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input placeholder="Buscar" class="d-none d-md-block searchInput" type="text">
+        <input placeholder="Search" class="d-none d-md-block searchInput" type="text">
     </div>
 </template>
 

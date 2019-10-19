@@ -41,17 +41,17 @@ class CommentsController extends Controller
         ]);
 
         // con auth() UTILIZAMOS LA SESION DEL USUARIO LOGUEADO
-        // auth()->user()->posts()->comments()->create([
-        //     'comment' => $data['comment'],
-        //     'user_id' => auth()->user()->id,
-        //     'post_id' => $post->id,
-        // ]);
-
-         \App\Comment::create([
+        auth()->user()->comments()->create([
             'comment' => $data['comment'],
             'user_id' => auth()->user()->id,
             'post_id' => $post->id,
         ]);
+
+        //  \App\Comment::create([
+        //     'comment' => $data['comment'],
+        //     'user_id' => auth()->user()->id,
+        //     'post_id' => $post->id,
+        // ]);
 
         $comments = Comment::where('post_id', $post->id)->with('profile')->with('user')->take(1)->latest()->get();
 

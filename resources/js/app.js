@@ -31,6 +31,10 @@ Vue.component('comments', require('./components/Comments.vue').default);
 
 Vue.component('comment-form', require('./components/SubmitComment.vue').default);
 
+Vue.component('index-posts', require('./components/IndexPosts.vue').default);
+
+Vue.component('index-profile', require('./components/IndexProfile.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
