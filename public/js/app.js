@@ -2177,7 +2177,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/post/profile/' + this.theprofile + '/0').then(function (res) {
-        console.log(res);
         _this.indexPosts = res.data;
         _this.postsCount = _this.indexPosts.length;
       })["catch"](function (err) {
@@ -2301,13 +2300,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // props: ['userId','follows'],
   mounted: function mounted() {},
   data: function data() {
-    return {};
+    return {
+      message: '',
+      indexPosts: []
+    };
   },
-  methods: {},
+  methods: {
+    send: function send() {
+      var _this = this;
+
+      if (this.message != '') {
+        axios.get('/search/' + this.message).then(function (res) {
+          _this.indexPosts = res.data;
+        })["catch"](function (err) {
+          console.error(err);
+        });
+      } else {
+        this.indexPosts = [];
+      }
+    }
+  },
   computed: {}
 });
 
@@ -38835,21 +38855,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.message,
+          expression: "message"
+        }
+      ],
+      staticClass: "d-none d-md-block searchInput",
+      attrs: { placeholder: "Search", type: "text" },
+      domProps: { value: _vm.message },
+      on: {
+        keyup: _vm.send,
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.message = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "ul",
+      { staticClass: "searchResults" },
+      _vm._l(_vm.indexPosts, function(post, key) {
+        return _c("li", { key: key }, [
+          _c("a", { attrs: { href: "../profile/" + post.profile.id } }, [
+            _c("img", {
+              staticClass: "rounded-circle",
+              attrs: { src: "../storage/" + post.profile.image, alt: "" }
+            }),
+            _c("span", { staticStyle: { "font-weight": "600" } }, [
+              _vm._v(_vm._s(post.name))
+            ]),
+            _vm._v(_vm._s(post.posts_count.length) + " posts"),
+            _c("span")
+          ])
+        ])
+      }),
+      0
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        staticClass: "d-none d-md-block searchInput",
-        attrs: { placeholder: "Search", type: "text" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

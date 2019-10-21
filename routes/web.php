@@ -53,3 +53,7 @@ Route::get('/post/profile/{user}/{offset}', 'PostsController@profileindex');
 
 // index home of posts
 Route::get('/', 'PostsController@index');
+
+// search users
+Route::get('/search/{query}', 'PostsController@search');
+

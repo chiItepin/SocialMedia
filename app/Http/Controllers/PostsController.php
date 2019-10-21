@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Cache as IlluminateCache;
 use App\Post;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -112,6 +113,18 @@ class PostsController extends Controller
 
 
     }
+
+
+    // home page
+    public function search($query)
+    {
+
+        $users = User::where('name', 'LIKE', '%'.$query.'%')->with('postsCount')->with('profile')->skip(0)->take(5)->latest()->get();
+
+        return response()->json($users);
+
+    }
+
 
 
 }

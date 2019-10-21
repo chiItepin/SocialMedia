@@ -36,7 +36,6 @@
             getPosts(){
             axios.get('/post/profile/'+ this.theprofile +'/0')
             .then(res => {
-                console.log(res);
                 this.indexPosts = res.data;
                 this.postsCount = this.indexPosts.length;
             })
