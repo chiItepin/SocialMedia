@@ -1,6 +1,12 @@
+<h1 style="text-align:center">Social media clone using Laravel 5 and Vue.js</h1>
 <p>
+<p style="font-weight:bold;text-align:center">Search users</p>
+<img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/c6cf1dc2-5ac6-47e4-b174-544d20d42901/00000700.png">
+<hr>
+<p style="font-weight:bold;text-align:center">Select posts</p>
 <img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/49b408b2-3b1f-4cc8-a33e-e8e4c38b0aab/00000693.png">
 <hr>
+<p style="font-weight:bold;text-align:center">Add comments</p>
 <img src="https://content.screencast.com/users/hectoralmeida/folders/Jing/media/7daba9e5-bac3-42e9-a621-b9ba4bf95970/00000692.png">
 </p>
 

@@ -10701,15 +10701,43 @@ ul.searchResults {
   background: #fff;
   border-radius: 4px;
   padding: 0;
+  right: 0;
+  left: 0;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 330px;
+}
+
+.searchResults li:first-child::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #e1e1e1;
+  clear: both;
+  transform: rotate(180deg);
+}
+
+.searchResults li a:hover {
+  background: whitesmoke;
+}
+
+.searchResults li:first-child a {
+  border-top: 1px solid rgba(122, 122, 122, 0.15) !important;
 }
 
 .searchResults li a {
   color: #9f9f9f !important;
   display: block;
   position: relative;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(122, 122, 122, 0.15);
+  border-top: none;
   padding-left: 50px;
+  transition: all 0.15s ease;
 }
 
 .searchResults li a span {
@@ -10719,7 +10747,6 @@ ul.searchResults {
 
 .searchResults li {
   list-style: none;
-  min-width: 300px;
 }
 
 .searchResults li a img {

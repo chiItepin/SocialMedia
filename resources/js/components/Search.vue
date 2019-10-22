@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div style="position:absolute;left:calc(50% - 92px)">
         <input v-model="message" @keyup="send" placeholder="Search" class="d-none d-md-block searchInput" type="text">
 
         <ul class="searchResults">
-            <li v-bind:key="key" v-for="(post, key) in indexPosts" ><a :href="'../profile/'+post.profile.id"><img class="rounded-circle" :src=" '../storage/'+post.profile.image " alt=""><span style="font-weight:600" >{{ post.name }}</span>{{ post.posts_count.length }} posts<span></span></a></li>
+            <li v-bind:key="key" v-for="(post, key) in indexPosts" ><a :href="'../profile/'+post.profile.id"><img class="rounded-circle" :src=" '../storage/'+post.profile.image " alt=""><span style="font-weight:600" >{{ post.name }}</span>{{ post.posts_count.length  }} posts</a></li>
         </ul>
     </div>
 </template>
@@ -23,7 +23,7 @@
         },
         methods:{
               send(){
-            if(this.message != ''){
+            if(this.message != '' && this.message.length > 1){
             axios.get('/search/'+this.message)
             .then(res => {
                 this.indexPosts = res.data;
